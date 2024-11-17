@@ -2,16 +2,17 @@ CREATE TABLE cars (
     id INT AUTO_INCREMENT PRIMARY KEY,
     model VARCHAR(255) NOT NULL,
     location VARCHAR(50) NOT NULL CHECK (location IN ('Plovdiv', 'Sofia', 'Varna', 'Burgas')),
-    daily_price DECIMAL(10, 2) NOT NULL
+    daily_price DECIMAL(10, 2) NOT NULL,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE
 );
 
-CREATE TABLE clients (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    address VARCHAR(255),
-    phone_number VARCHAR(20),
-    age INT,
-    has_accidents BOOLEAN
+CREATE TABLE CLIENTS (
+     id INT AUTO_INCREMENT PRIMARY KEY,
+     name VARCHAR(255) NOT NULL,
+     address VARCHAR(255) NOT NULL,
+     phone VARCHAR(20) NOT NULL,
+     age INT NOT NULL,
+     has_accidents BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE offers (
@@ -22,6 +23,7 @@ CREATE TABLE offers (
     end_date DATE,
     total_price DECIMAL(10, 2),
     accepted BOOLEAN,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
     FOREIGN KEY (car_id) REFERENCES cars(id),
     FOREIGN KEY (client_id) REFERENCES clients(id)
 );

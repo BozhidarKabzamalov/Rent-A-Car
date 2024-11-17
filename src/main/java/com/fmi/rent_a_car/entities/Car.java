@@ -7,6 +7,7 @@ public class Car {
     private String model;
     private String location;
     private BigDecimal dailyPrice;
+    private boolean isActive;
 
     public int getId() {
         return id;
@@ -38,5 +39,13 @@ public class Car {
 
     public void setDailyPrice(BigDecimal dailyPrice) {
         this.dailyPrice = dailyPrice;
+    }
+
+    public boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 }

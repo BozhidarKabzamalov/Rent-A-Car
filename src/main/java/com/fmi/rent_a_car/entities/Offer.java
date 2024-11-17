@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Offer {
-    private Long id;
+    private int id;
     private Car car;
     private Client client;
     private LocalDate startDate;
@@ -12,11 +12,11 @@ public class Offer {
     private BigDecimal totalPrice;
     private boolean accepted;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -17,8 +17,8 @@ public class CarService {
 
     public boolean createCar(Car car) {
         StringBuilder query = new StringBuilder();
-        query.append("INSERT into CARS (model, location, daily_price) VALUES (honda, Plovdiv, 100)");
-        this.db.execute(query.toString());
+        query.append("INSERT into CARS (model, location, daily_price) VALUES (?, ?, ?)");
+        this.db.update(query.toString(), car.getModel(), car.getLocation(), car.getDailyPrice());
         return true;
     }
 
@@ -50,11 +50,7 @@ public class CarService {
                 .append("WHERE is_active = 1 ")
                 .append(" AND id = ?");
 
-        int resultCount = this.db.update(query.toString(),
-                car.getModel(),
-                car.getLocation(),
-                car.getDailyPrice(),
-                car.getId());
+        int resultCount = this.db.update(query.toString(), car.getModel(), car.getLocation(), car.getDailyPrice(), car.getId());
 
         if (resultCount > 1) {
             throw new RuntimeException("More than one customer with same id exists");
@@ -65,9 +61,11 @@ public class CarService {
 
     public boolean deleteCar(int id) {
         StringBuilder query = new StringBuilder();
-        query.append("DELETE FROM CARS WHERE id = ").append(id);
+        query.append("UPDATE CARS ")
+                .append("SET is_active = false ")
+                .append("WHERE id = ?");
 
-        int resultCount = this.db.update(query.toString());
+        int resultCount = this.db.update(query.toString(), id);
 
         if (resultCount > 1) {
             throw new RuntimeException("More than one car with the same id exists");

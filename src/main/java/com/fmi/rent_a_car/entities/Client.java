@@ -1,18 +1,18 @@
 package com.fmi.rent_a_car.entities;
 
 public class Client {
-    private Long id;
+    private int id;
     private String name;
-    private String address;
+    private String city;
     private String phoneNumber;
     private int age;
     private boolean hasAccidents;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -24,12 +24,12 @@ public class Client {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public String getCity() {
+        return city;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getPhoneNumber() {
