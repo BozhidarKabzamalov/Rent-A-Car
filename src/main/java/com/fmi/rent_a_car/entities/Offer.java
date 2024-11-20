@@ -5,12 +5,13 @@ import java.time.LocalDate;
 
 public class Offer {
     private int id;
-    private Car car;
-    private Client client;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private int carId;
+    private int clientId;
+    private int weekDaysCount;
+    private int weekendDaysCount;
     private BigDecimal totalPrice;
-    private boolean accepted;
+    private boolean isAccepted;
+    private boolean isActive;
 
     public int getId() {
         return id;
@@ -20,36 +21,36 @@ public class Offer {
         this.id = id;
     }
 
-    public Car getCar() {
-        return car;
+    public int getCarId() {
+        return carId;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public void setCarId(int carId) {
+        this.carId = carId;
     }
 
-    public Client getClient() {
-        return client;
+    public int getClientId() {
+        return clientId;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public int getWeekDaysCount() {
+        return weekDaysCount;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
+    public void setWeekDaysCount(int weekDaysCount) {
+        this.weekDaysCount = weekDaysCount;
     }
 
-    public LocalDate getEndDate() {
-        return endDate;
+    public int getWeekendDaysCount() {
+        return weekendDaysCount;
     }
 
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
+    public void setWeekendDaysCount(int weekendDaysCount) {
+        this.weekendDaysCount = weekendDaysCount;
     }
 
     public BigDecimal getTotalPrice() {
@@ -61,10 +62,18 @@ public class Offer {
     }
 
     public boolean isAccepted() {
-        return accepted;
+        return isAccepted;
     }
 
-    public void setAccepted(boolean accepted) {
-        this.accepted = accepted;
+    public void setAccepted(boolean isAccepted) {
+        this.isAccepted = isAccepted;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 }

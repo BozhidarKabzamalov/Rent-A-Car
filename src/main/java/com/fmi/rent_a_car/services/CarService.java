@@ -24,8 +24,8 @@ public class CarService {
 
     public Car getCarById(int id) {
         StringBuilder query = new StringBuilder();
-        query.append("SELECT * FROM CARS WHERE id = ").append(id);
-        var collection = this.db.query(query.toString(), new CarRowMapper());
+        query.append("SELECT * FROM CARS WHERE id = ?");
+        var collection = this.db.query(query.toString(), new CarRowMapper(), id);
 
         if (collection.isEmpty()) {
             return null;
@@ -34,23 +34,18 @@ public class CarService {
         return collection.get(0);
     }
 
-    public List<Car> getAllCarsByClientLocation() {
+    public List<Car> getAllCarsByClientLocation(String clientLocation) {
         StringBuilder query = new StringBuilder();
-        query.append("SELECT * FROM CARS WHERE location = 'Plovdiv'");
-        return this.db.query(query.toString(), new CarRowMapper());
+        query.append("SELECT * FROM CARS WHERE location = ?");
+
+        return this.db.query(query.toString(), new CarRowMapper(), clientLocation);
     }
 
-    public boolean updateCar(Car car) {
-
+    public boolean updateCar(int id, Car car) {
         StringBuilder query = new StringBuilder();
-        query.append("UPDATE CARS ")
-                .append("SET model = ?,")
-                .append("location = ? ")
-                .append("daily_price = ? ")
-                .append("WHERE is_active = 1 ")
-                .append(" AND id = ?");
+        query.append("UPDATE CARS SET model = ?, location = ?, daily_price = ? WHERE is_active = TRUE AND id = ?");
 
-        int resultCount = this.db.update(query.toString(), car.getModel(), car.getLocation(), car.getDailyPrice(), car.getId());
+        int resultCount = this.db.update(query.toString(), car.getModel(), car.getLocation(), car.getDailyPrice(), id);
 
         if (resultCount > 1) {
             throw new RuntimeException("More than one customer with same id exists");

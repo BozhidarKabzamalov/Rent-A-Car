@@ -14,9 +14,13 @@ public class OfferRowMapper implements RowMapper<Offer> {
         Offer offer = new Offer();
 
         offer.setId(rs.getInt("id"));
-        offer.setModel(rs.getString("model"));
-        offer.setLocation(rs.getString("location"));
-        offer.setDailyPrice(rs.getBigDecimal("daily_price"));
+        offer.setCarId(rs.getInt("car_id"));
+        offer.setClientId(rs.getInt("client_id"));
+        offer.setWeekDaysCount(rs.getInt("week_days_count"));
+        offer.setWeekendDaysCount(rs.getInt("weekend_days_count"));
+        offer.setTotalPrice(rs.getBigDecimal("total_price"));
+        offer.setAccepted(rs.getBoolean("is_accepted"));
+        offer.setIsActive(rs.getBoolean("is_active"));
 
         return offer;
     }

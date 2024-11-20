@@ -3,7 +3,7 @@ package com.fmi.rent_a_car.entities;
 public class Client {
     private int id;
     private String name;
-    private String city;
+    private String location;
     private String phoneNumber;
     private int age;
     private boolean hasAccidents;
@@ -24,12 +24,12 @@ public class Client {
         this.name = name;
     }
 
-    public String getCity() {
-        return city;
+    public String getLocation() {
+        return location;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getPhoneNumber() {
@@ -48,7 +48,7 @@ public class Client {
         this.age = age;
     }
 
-    public boolean isHasAccidents() {
+    public boolean getHasAccidents() {
         return hasAccidents;
     }
 

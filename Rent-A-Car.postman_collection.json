@@ -1,0 +1,255 @@
+{
+	"info": {
+		"_postman_id": "68fb1c94-ee29-4afb-b96f-d5689deb5c87",
+		"name": "Rent-A-Car",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14843715"
+	},
+	"item": [
+		{
+			"name": "Cars",
+			"item": [
+				{
+					"name": "Create A Car",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"model\": \"Mazda\",\r\n    \"location\": \"Burgas\",\r\n    \"dailyPrice\": 300\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/cars",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"cars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Car",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"model\": \"Mazda\",\n    \"location\": \"Burgas\",\n    \"dailyPrice\": 300\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/cars/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"cars",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cars By Client Location",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/cars?clientLocation=Plovdiv",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"cars"
+							],
+							"query": [
+								{
+									"key": "clientLocation",
+									"value": "Plovdiv"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Car By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/cars/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"cars",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Car By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/cars/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"cars",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clients",
+			"item": [
+				{
+					"name": "Create A Client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Bozhidar\",\n    \"location\": \"Plovdiv\",\n    \"phoneNumber\": \"9898573847\",\n    \"age\": 29,\n    \"hasAccidents\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/clients",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Client By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/clients/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"clients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Offers",
+			"item": [
+				{
+					"name": "Get Offers By Client ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/offers?clientId=1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"offers"
+							],
+							"query": [
+								{
+									"key": "clientId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Offer By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/offers/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"offers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Offer By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/offers/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"offers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Accept Offer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "/offers/accept",
+							"path": [
+								"offers",
+								"accept"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

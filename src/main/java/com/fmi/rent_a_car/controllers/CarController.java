@@ -3,23 +3,24 @@ package com.fmi.rent_a_car.controllers;
 import com.fmi.rent_a_car.entities.Car;
 import com.fmi.rent_a_car.http.AppResponse;
 import com.fmi.rent_a_car.services.CarService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 @RestController
 public class CarController {
     private CarService carService;
-
+    @Autowired
     public CarController(CarService carService) {
         this.carService = carService;
     }
 
     @GetMapping("/cars")
-    public ResponseEntity<?> getAllCars() {
-        ArrayList<Car> collection = (ArrayList<Car>) this.carService.getAllCarsByClientLocation();
+    public ResponseEntity<?> getAllCarsByClientLocation(@RequestParam String clientLocation) {
+
+        ArrayList<Car> collection = (ArrayList<Car>) this.carService.getAllCarsByClientLocation(clientLocation);
 
         return AppResponse.success().withData(collection).build();
     }
@@ -37,7 +38,6 @@ public class CarController {
 
     @PostMapping("/cars")
     public ResponseEntity<?> createCar(@RequestBody Car car) {
-        HashMap<String, Object> response = new HashMap<>();
         if (this.carService.createCar(car)) {
             return AppResponse.success().withMessage("Car created successfully").build();
         }
@@ -47,9 +47,9 @@ public class CarController {
                 .build();
     }
 
-    @PutMapping("/cars")
-    public ResponseEntity<?> updateCar(@RequestBody Car car) {
-        boolean isUpdateSuccessful =  this.carService.updateCar(car);
+    @PutMapping("/cars/{id}")
+    public ResponseEntity<?> updateCar(@PathVariable int id, @RequestBody Car car) {
+        boolean isUpdateSuccessful =  this.carService.updateCar(id, car);
 
         if(!isUpdateSuccessful) {
             return AppResponse.error()
