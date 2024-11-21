@@ -54,7 +54,7 @@ public class OfferService {
 
     public boolean acceptOffer(int id) {
         StringBuilder query = new StringBuilder();
-        query.append("UPDATE OFFERS SET IS_ACCEPTED = TRUE WHERE is_active = TRUE AND id = ?");
+        query.append("UPDATE OFFERS SET is_accepted = TRUE WHERE is_active = TRUE AND id = ?");
 
         int resultCount = this.db.update(query.toString(), id);
 
@@ -67,7 +67,7 @@ public class OfferService {
 
     public Offer getOfferById(int id) {
         StringBuilder query = new StringBuilder();
-        query.append("SELECT * FROM OFFERS WHERE id = ?");
+        query.append("SELECT * FROM OFFERS WHERE is_active = TRUE AND id = ?");
         List<Offer> collection = this.db.query(query.toString(), new OfferRowMapper(), id);
 
         if (collection.isEmpty()) {
@@ -79,7 +79,7 @@ public class OfferService {
 
     public List<Offer> getAllOffersForClient(int clientId) {
         StringBuilder query = new StringBuilder();
-        query.append("SELECT * FROM OFFERS WHERE client_id = ?");
+        query.append("SELECT * FROM OFFERS WHERE is_active = TRUE AND client_id = ?");
 
         return this.db.query(query.toString(), new OfferRowMapper(), clientId);
     }

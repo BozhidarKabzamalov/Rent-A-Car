@@ -266,10 +266,13 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "/offers/1/accept",
+							"raw": "{{URL}}/offers/3/accept",
+							"host": [
+								"{{URL}}"
+							],
 							"path": [
 								"offers",
-								"1",
+								"3",
 								"accept"
 							]
 						}

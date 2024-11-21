@@ -24,7 +24,7 @@ public class CarService {
 
     public Car getCarById(int id) {
         StringBuilder query = new StringBuilder();
-        query.append("SELECT * FROM CARS WHERE id = ?");
+        query.append("SELECT * FROM CARS WHERE is_active = TRUE AND id = ?");
         var collection = this.db.query(query.toString(), new CarRowMapper(), id);
 
         if (collection.isEmpty()) {
@@ -36,7 +36,7 @@ public class CarService {
 
     public List<Car> getAllCarsByClientLocation(String clientLocation) {
         StringBuilder query = new StringBuilder();
-        query.append("SELECT * FROM CARS WHERE location = ?");
+        query.append("SELECT * FROM CARS WHERE is_active = TRUE AND location = ?");
 
         return this.db.query(query.toString(), new CarRowMapper(), clientLocation);
     }
@@ -56,9 +56,7 @@ public class CarService {
 
     public boolean deleteCar(int id) {
         StringBuilder query = new StringBuilder();
-        query.append("UPDATE CARS ")
-                .append("SET is_active = false ")
-                .append("WHERE id = ?");
+        query.append("UPDATE CARS SET is_active = FALSE WHERE id = ?");
 
         int resultCount = this.db.update(query.toString(), id);
 
