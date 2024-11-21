@@ -1,40 +1,63 @@
 package com.fmi.rent_a_car.controllers;
 
-import com.fmi.rent_a_car.entities.Car;
 import com.fmi.rent_a_car.entities.Offer;
 import com.fmi.rent_a_car.http.AppResponse;
 import com.fmi.rent_a_car.services.OfferService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
+@RestController
 public class OfferController {
-    private OfferService offerService;
+    private final OfferService offerService;
 
     public OfferController(OfferService offerService) {
         this.offerService = offerService;
     }
 
-    @GetMapping("/offers/{clientId}")
+    @GetMapping("/offers")
     public ResponseEntity<?> getAllOffersForClient(@RequestParam int clientId) {
         ArrayList<Offer> collection = (ArrayList<Offer>) this.offerService.getAllOffersForClient(clientId);
 
         return AppResponse.success().withData(collection).build();
     }
 
-    @GetMapping("/offer/{id}")
+    @GetMapping("/offers/{id}")
     public ResponseEntity<?> getOfferById(@PathVariable int id) {
         Offer offer = this.offerService.getOfferById(id);
 
         if (offer == null) {
-            return AppResponse.error().withMessage("Car data not found").build();
+            return AppResponse.error().withMessage("Offer data not found").build();
         }
 
         return AppResponse.success().withData(offer).build();
+    }
+
+    @PostMapping("/offers")
+    public ResponseEntity<?> createOffer(@RequestBody Offer offer) {
+        if (this.offerService.createOffer(offer)) {
+            return AppResponse.success().withMessage("Offer created successfully").build();
+        }
+
+        return AppResponse.error()
+                .withMessage("Offer could not be created")
+                .build();
+    }
+
+    @PutMapping("/offers/{id}/accept")
+    public ResponseEntity<?> acceptOffer(@PathVariable int id) {
+        boolean isUpdateSuccessful =  this.offerService.acceptOffer(id);
+
+        if(!isUpdateSuccessful) {
+            return AppResponse.error()
+                    .withMessage("Offer could not be accepted")
+                    .build();
+        }
+
+        return AppResponse.success()
+                .withMessage("Offer was accepted successfully")
+                .build();
     }
 
     @DeleteMapping("/offers/{id}")

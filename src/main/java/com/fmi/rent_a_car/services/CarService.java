@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public class CarService {
-    private JdbcTemplate db;
+    private final JdbcTemplate db;
 
     public CarService(JdbcTemplate jdbc) {
         this.db = jdbc;

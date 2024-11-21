@@ -22,7 +22,7 @@ CREATE TABLE offers (
     week_days_count INT NOT NULL,
     weekend_days_count INT NOT NULL,
     total_price DECIMAL(10, 2),
-    is_accepted BOOLEAN,
+    is_accepted BOOLEAN NOT NULL DEFAULT FALSE,
     is_active BOOLEAN NOT NULL DEFAULT TRUE,
     FOREIGN KEY (car_id) REFERENCES cars(id),
     FOREIGN KEY (client_id) REFERENCES clients(id)

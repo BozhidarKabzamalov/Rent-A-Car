@@ -1,15 +1,13 @@
 package com.fmi.rent_a_car.services;
 
-import com.fmi.rent_a_car.entities.Car;
 import com.fmi.rent_a_car.entities.Client;
-import com.fmi.rent_a_car.mappers.CarRowMapper;
 import com.fmi.rent_a_car.mappers.ClientRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ClientService {
-    private JdbcTemplate db;
+    private final JdbcTemplate db;
 
     public ClientService(JdbcTemplate jdbc) {
         this.db = jdbc;

@@ -1,6 +1,5 @@
 package com.fmi.rent_a_car.controllers;
 
-import com.fmi.rent_a_car.entities.Car;
 import com.fmi.rent_a_car.entities.Client;
 import com.fmi.rent_a_car.http.AppResponse;
 import com.fmi.rent_a_car.services.ClientService;
@@ -9,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ClientController {
-    private ClientService clientService;
+    private final ClientService clientService;
 
     public ClientController(ClientService clientService) {
         this.clientService = clientService;

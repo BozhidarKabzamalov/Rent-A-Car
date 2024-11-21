@@ -133,7 +133,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Bozhidar\",\n    \"location\": \"Plovdiv\",\n    \"phoneNumber\": \"9898573847\",\n    \"age\": 29,\n    \"hasAccidents\": false\n}",
+							"raw": "{\n    \"name\": \"Ivan\",\n    \"location\": \"Sofia\",\n    \"phoneNumber\": \"9898573847\",\n    \"age\": 29,\n    \"hasAccidents\": false\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -175,6 +175,32 @@
 		{
 			"name": "Offers",
 			"item": [
+				{
+					"name": "Create An Offer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"carId\": 1,\r\n    \"clientId\": 1,\r\n    \"weekDaysCount\": 5,\r\n    \"weekendDaysCount\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/offers",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"offers"
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "Get Offers By Client ID",
 					"request": {
@@ -240,9 +266,10 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "/offers/accept",
+							"raw": "/offers/1/accept",
 							"path": [
 								"offers",
+								"1",
 								"accept"
 							]
 						}

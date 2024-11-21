@@ -1,7 +1,6 @@
 package com.fmi.rent_a_car.entities;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 public class Offer {
     private int id;
@@ -61,7 +60,7 @@ public class Offer {
         this.totalPrice = totalPrice;
     }
 
-    public boolean isAccepted() {
+    public boolean getIsAccepted() {
         return isAccepted;
     }
 
@@ -69,7 +68,7 @@ public class Offer {
         this.isAccepted = isAccepted;
     }
 
-    public boolean isActive() {
+    public boolean getIsActive() {
         return isActive;
     }
 
